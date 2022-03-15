@@ -1,0 +1,76 @@
+﻿@page "/debtscontroller/create"
+
+@inject IPersonRepository _personRepository;
+@inject NavigationManager _navigationManager;
+
+<div class="row my-2">
+    <h3 class="card-title mb-3 ml-3">@Title Dividend</h3>
+
+    <div class="col-6">
+        <EditForm Model="Person" OnValidSubmit="UpsertDividend">
+            <DataAnnotationsValidator />
+
+            <div class="form-group">
+                <label>Name</label>
+                <InputText @bind-Value="Person.Name" class="form-control"></InputText>
+                <ValidationMessage For="() => Person.Name"></ValidationMessage>
+            </div>
+
+            <div class="form-group">
+                <label>Borrowed Cash</label>
+                <InputText @bind-Value="Person.Cash" class="form-control"></InputText>
+                <ValidationMessage For="() => Person.Cash"></ValidationMessage>
+            </div>
+
+            <div class="form-group">
+                <label>Select how many times the loan has been paid in installments</label>
+                <InputSelect @bind-Value="TimesInstallments" class="form-control">
+                    @for (sbyte count = 1; count <= sbyte.MaxValue - 1; count++)
+                    {
+                        <option value="@count">@count</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="() => Person.TimesInstallments"></ValidationMessage>
+            </div>
+
+            <div class="form-group">
+                <label>Select how many times the loan already has been paid in installments</label>
+                <InputSelect @bind-Value="PaidInstallments" class="form-control">
+                    @for (sbyte count = 0; count <= sbyte.MaxValue - 1; count++)
+                    {
+                        <option value="@count">@count</option>
+                    }
+                </InputSelect>
+                @if (PaidInstallmentsIsntValid)
+                {
+                    <div class="validation-message">The number of installments paid must be less than or equal to the amount of installments</div>
+                }
+                <ValidationMessage For="() => Person.PaidInstallments"></ValidationMessage>
+            </div>
+
+            <div class="form-group py-2">
+                <button class="btn btn-primary">@Title</button>
+                <NavLink href="debtscontroller" class="btn btn-secondary">Back to Index</NavLink>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private PersonDTO Person { get; set; } = new PersonDTO();
+    private bool PaidInstallmentsIsntValid => TimesInstallments < PaidInstallments;
+    private string Title => "Create";
+    private sbyte TimesInstallments { get; set; } = 1;
+    private sbyte PaidInstallments { get; set; } = 0;
+
+    private void UpsertDividend()
+    {
+        if (PaidInstallmentsIsntValid) return;
+
+        Person.TimesInstallments = TimesInstallments;
+        Person.PaidInstallments = PaidInstallments;
+
+        _personRepository.Create(Person);
+        _navigationManager.NavigateTo("debtscontroller");
+    }
+}

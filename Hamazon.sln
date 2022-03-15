@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamazon_Server", "Hamazon_Server\Hamazon_Server.csproj", "{F2658973-8AE4-4761-A378-0B48FBA26EAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamazon_Server", "Hamazon_Server\Hamazon_Server.csproj", "{F2658973-8AE4-4761-A378-0B48FBA26EAD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamazon_Client", "Hamazon_Client\Hamazon_Client.csproj", "{4EF93198-4EB9-4861-AFBC-CF123223EDA0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamazon_Models", "Hamazon_Models\Hamazon_Models.csproj", "{244EFB56-ACFE-4D43-B956-DC65534247C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamazon_DataAccess", "Hamazon_DataAccess\Hamazon_DataAccess.csproj", "{096C0DB9-277B-45ED-8DD4-295CFC0A01EA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamazon_Common", "Hamazon_Common\Hamazon_Common.csproj", "{C2F2A6EA-491B-42C6-AB18-BD82E7B9E81D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamazon_Business", "Hamazon_Business\Hamazon_Business.csproj", "{6BBFDFFA-4783-4F83-B9A6-1C4B966410B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{F2658973-8AE4-4761-A378-0B48FBA26EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2658973-8AE4-4761-A378-0B48FBA26EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2658973-8AE4-4761-A378-0B48FBA26EAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EF93198-4EB9-4861-AFBC-CF123223EDA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EF93198-4EB9-4861-AFBC-CF123223EDA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EF93198-4EB9-4861-AFBC-CF123223EDA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EF93198-4EB9-4861-AFBC-CF123223EDA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244EFB56-ACFE-4D43-B956-DC65534247C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244EFB56-ACFE-4D43-B956-DC65534247C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244EFB56-ACFE-4D43-B956-DC65534247C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244EFB56-ACFE-4D43-B956-DC65534247C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{096C0DB9-277B-45ED-8DD4-295CFC0A01EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{096C0DB9-277B-45ED-8DD4-295CFC0A01EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{096C0DB9-277B-45ED-8DD4-295CFC0A01EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{096C0DB9-277B-45ED-8DD4-295CFC0A01EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2F2A6EA-491B-42C6-AB18-BD82E7B9E81D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F2A6EA-491B-42C6-AB18-BD82E7B9E81D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F2A6EA-491B-42C6-AB18-BD82E7B9E81D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F2A6EA-491B-42C6-AB18-BD82E7B9E81D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BBFDFFA-4783-4F83-B9A6-1C4B966410B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BBFDFFA-4783-4F83-B9A6-1C4B966410B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BBFDFFA-4783-4F83-B9A6-1C4B966410B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BBFDFFA-4783-4F83-B9A6-1C4B966410B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

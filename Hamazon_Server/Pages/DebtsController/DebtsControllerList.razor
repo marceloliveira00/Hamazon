@@ -1,0 +1,58 @@
+﻿@page "/debtscontroller"
+
+@inject IPersonRepository _personRepository;
+
+<div class="row bg-light justify-content-between pb-5 pt-4">
+    <div class="col-6">
+        <h4 class="card-title">Debts Controller Page</h4>
+    </div>
+    <div class="col-1 offset-5">
+        <a href="debtscontroller/create" class="btn btn-primary">Add new Dividend</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @if (People.Any())
+        {
+            <table class="table table-light">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Borrowed Cash</th>
+                        <th>Installments</th>
+                        <th>Paid Installments</th>
+                        <th>Settled</th>
+                        <th>Created Date</th>
+                        <th>Updated Date</th>
+                        <th colspan="2" align="right" class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (PersonDTO person in People)
+                    {
+                        <tr>
+                            <td>@person.Name</td>
+                            <td>@person.Cash</td>
+                            <td>@person.TimesInstallments</td>
+                            <td>@person.PaidInstallments</td>
+                            <td>@(person.Settled ? "Yes" : "No")</td>
+                            <td>@person.CreatedDate</td>
+                            <td>@person.UpdatedDate</td>
+                            <td align="right" width="69"><NavLink href="" class="btn btn-primary">Edit</NavLink></td>
+                            <td align="right" width="88"><button class="btn btn-danger">Delete</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+@code {
+    private IEnumerable<PersonDTO> People { get; set; } = new List<PersonDTO>();
+
+    protected override void OnInitialized()
+    {
+        People = _personRepository.GetAll();
+    }
+}
