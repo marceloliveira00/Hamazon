@@ -1,12 +1,13 @@
 ﻿@page "/debtscontroller"
-
 @inject IPersonRepository _personRepository;
+@inject JSRuntime _jsRuntime;
 
+<_DeleteConfirmation></_DeleteConfirmation>
 <div class="row bg-light justify-content-between pb-5 pt-4">
     <div class="col-6">
         <h4 class="card-title">Debts Controller Page</h4>
     </div>
-    <div class="col-1 offset-5">
+    <div class="col-2 offset-4">
         <a href="debtscontroller/create" class="btn btn-primary">Add new Dividend</a>
     </div>
 </div>
@@ -38,21 +39,45 @@
                             <td>@(person.Settled ? "Yes" : "No")</td>
                             <td>@person.CreatedDate</td>
                             <td>@person.UpdatedDate</td>
-                            <td align="right" width="69"><NavLink href="" class="btn btn-primary">Edit</NavLink></td>
-                            <td align="right" width="88"><button class="btn btn-danger">Delete</button></td>
+                            <td align="right" width="69"><NavLink href="@($"debtscontroller/edit/" + person.Id)" class="btn btn-primary">Edit</NavLink></td>
+                            <td align="right" width="88"><button class="btn btn-danger" @onclick="() => HandleDelete(person.Id)">Delete</button></td>
                         </tr>
                     }
                 </tbody>
             </table>
         }
+        else
+        {
+            if (IsLoading)
+            {
+                <div class="text-center">
+                    <img src="/Images/loading.gif" />
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info" role="alert"></div>
+            }
+        }
     </div>
 </div>
 
 @code {
+    private bool IsLoading { get; set; } = true;
+    private int DeleteCategoryId { get; set; } = 0;
     private IEnumerable<PersonDTO> People { get; set; } = new List<PersonDTO>();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync() => await Task.Run(LoadPeople);
+
+    private void LoadPeople()
     {
         People = _personRepository.GetAll();
+        IsLoading = false;
+    }
+
+    private void HandleDelete(int id)
+    {
+        DeleteCategoryId = id;
+        _jsRuntime.InvokeVoidAsync("ShowDeleteConfirmationModal");
     }
 }
